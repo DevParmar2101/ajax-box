@@ -1,8 +1,9 @@
 <?php
 
+use yii\web\Request;
 use yii\bootstrap\BootstrapAsset;
 use yii\bootstrap\BootstrapPluginAsset;
-
+$baseUrl = str_replace('/frontend/web', '', (new Request)->getBaseUrl());
 $params = array_merge(
     require __DIR__ . '/../../common/config/params.php',
     require __DIR__ . '/../../common/config/params-local.php',
@@ -18,6 +19,7 @@ return [
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
         'request' => [
+            'baseUrl' => $baseUrl,
             'csrfParam' => '_csrf-frontend',
         ],
         'user' => [
@@ -41,6 +43,7 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+
         'assetManager' => [
             'forceCopy' => true,
             'bundles' => [
@@ -53,6 +56,7 @@ return [
             ],
         ],
         'urlManager' => [
+            'baseUrl' => $baseUrl,
             'enablePrettyUrl' => true,
             'showScriptName' => true,
             'rules' => [

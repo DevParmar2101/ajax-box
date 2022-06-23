@@ -90,6 +90,7 @@ class SiteController extends Controller
      */
     public function actionDetail(bool $renderAjax = false)
     {
+        Yii::$app->view->title = 'User Detail';
         $user = User::findOne(['id' => Yii::$app->user->identity->id]);
         $user_detail = UserDetail::findOne(['user_id' =>Yii::$app->user->identity->id]);
 
@@ -123,6 +124,7 @@ class SiteController extends Controller
      */
     public function actionAddress(bool $renderAjax = false)
     {
+        Yii::$app->view->title = 'User Address';
         $user = User::findOne(['id' => Yii::$app->user->identity->id]);
         $user_address = UserAddress::findOne(['user_id' => Yii::$app->user->identity->id]);
 
@@ -153,8 +155,9 @@ class SiteController extends Controller
      * @param bool $renderAjax
      * @return string
      */
-    public function actionViewDetail($renderAjax = false)
+    public function actionViewDetail(bool $renderAjax = false): string
     {
+        Yii::$app->view->title = 'View Detail ';
         $user_id = Yii::$app->user->identity->id;
         $user = User::findOne(['id' => $user_id]);
         $user_detail = UserDetail::findOne(['user_id' => $user_id]);
