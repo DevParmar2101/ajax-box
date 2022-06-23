@@ -58,8 +58,9 @@ return [
         'urlManager' => [
             'baseUrl' => $baseUrl,
             'enablePrettyUrl' => true,
-            'showScriptName' => true,
+            'showScriptName' => false,
             'rules' => [
+
             ],
         ],
 
