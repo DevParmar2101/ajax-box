@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "user_detail".
@@ -14,7 +15,7 @@ use Yii;
  * @property string $mobile_number
  * @property int $user_id
  */
-class UserDetail extends \yii\db\ActiveRecord
+class UserDetail extends ActiveRecord
 {
     /**
      * {@inheritdoc}
