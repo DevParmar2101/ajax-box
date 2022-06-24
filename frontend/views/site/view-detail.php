@@ -13,7 +13,12 @@ use yii\web\View;
  * @var $user User
  */
 ?>
-<h5 class="card-header"> View Detail</h5>
+<div class="card-header d-flex">
+    <h5 class="m-0 align-self-center">View Detail</h5>
+    <div class="text-right done-button">
+        <?= \yii\helpers\Html::a('Done',['site/index'],['class'=>'btn btn-primary'])?>
+    </div>
+</div>
 <ul class="list-group list-group-flush">
     <li class="list-group-item"><strong>First Name: </strong><?= $user_detail->first_name?></li>
     <li class="list-group-item"><strong>Last Name: </strong><?= $user_detail->last_name?></li>
