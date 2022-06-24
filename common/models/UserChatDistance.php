@@ -13,6 +13,8 @@ use Yii;
  * @property float $min_order_price
  * @property float $delivery_price
  * @property int $user_id
+ *
+ * @property UserChatDistance[] $chatDistance
  */
 class UserChatDistance extends \yii\db\ActiveRecord
 {
@@ -49,5 +51,12 @@ class UserChatDistance extends \yii\db\ActiveRecord
             'delivery_price' => 'Delivery Price',
             'user_id' => 'User ID',
         ];
+    }
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getChatDistance(): \yii\db\ActiveQuery
+    {
+        return $this->hasMany(User::class,['id'=>'user_id']);
     }
 }

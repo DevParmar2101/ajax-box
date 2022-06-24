@@ -23,7 +23,6 @@ use yii\web\IdentityInterface;
  * @property integer $updated_at
  * @property string $password write-only password
  *
- * @property UserChatDistance[] $chatDistance
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -213,11 +212,4 @@ class User extends ActiveRecord implements IdentityInterface
         $this->password_reset_token = null;
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function chatDistance(): \yii\db\ActiveQuery
-    {
-        return $this->hasMany(UserChatDistance::class,['user_id'=>'id']);
-    }
 }
