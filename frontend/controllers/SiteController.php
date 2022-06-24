@@ -146,13 +146,25 @@ class SiteController extends Controller
             if ($user_address->load(Yii::$app->request->post()) && Yii::$app->request->isPjax) {
                 $user_address->user_id = Yii::$app->user->identity->id;
                 $user_address->save();
-                return $this->actionViewDetail(true);
+                return $this->actionChatDistance(true);
             }
         }else{
             return $this->render($this->profileView, $content);
         }
     }
 
+    /**
+     * @param bool $renderAjax
+     * @return string
+     */
+    public function actionChatDistance(bool $renderAjax = false): string
+    {
+        Yii::$app->view->title = 'User Chat';
+        $user_id = Yii::$app->user->identity->id;
+        $content = [
+            'view_name' => ''
+        ];
+    }
     /**
      * @param bool $renderAjax
      * @return string
