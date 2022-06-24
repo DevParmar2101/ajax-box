@@ -3,6 +3,7 @@
 use common\components\ActiveForm;
 use common\models\User;
 use common\models\UserChatDistance;
+use yii\helpers\Html;
 use yii\helpers\Url;
 
 /**
@@ -10,9 +11,10 @@ use yii\helpers\Url;
  * @var $distance UserChatDistance
  * @var $user User
  */
-
-$chatDistance = $user->chatDistance()->orderBy(['id' => SORT_DESC])->all();
-$chatCreate = Url::toRoute(['/site/chat-distance-create','id' => $distance->id]);
+if ($user->chatDistance){
+    $chatDistance = $user->chatDistance()->orderBy(['id' => SORT_DESC])->all();
+}
+$chatCreate = Url::toRoute(['/site/chat-distance-create']);
 ?>
 
     <h3 class="card-header">By Distance</h3>
@@ -45,7 +47,10 @@ $chatCreate = Url::toRoute(['/site/chat-distance-create','id' => $distance->id])
             </div>
         </div>
         <div class="form-group">
-
+            <?= Html::a('Back',['/site/address'],['class' => 'btn btn-success'])?>
+            <?php if (count($chatDistance)>=1){ ?>
+            <?= Html::a('Done',['/site/index'],['class' => 'btn btn-primary','data-pjax-custom' => '#id-setup-process'])?>
+            <?php }?>
         </div>
         <?php ActiveForm::end()?>
     </div>
