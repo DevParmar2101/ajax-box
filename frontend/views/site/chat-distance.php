@@ -11,13 +11,10 @@ use yii\helpers\Url;
  * @var $distance UserChatDistance
  * @var $user User
  */
-if ($user->chatDistance){
-    $chatDistance = $user->chatDistance()->orderBy(['id' => SORT_DESC])->all();
-}
-$chatCreate = Url::toRoute(['/site/chat-distance-create']);
+    $chatDistance = UserChatDistance::find()->where(['user_id' => Yii::$app->user->identity->id])->orderBy(['id' => SORT_DESC])->all();
+    $chatCreate = Url::toRoute(['/site/chat-distance-create']);
 ?>
-
-    <h3 class="card-header">By Distance</h3>
+    <h5 class="card-header">By Distance</h5>
     <div class="card-body">
         <?php $form = ActiveForm::begin(['action' => $chatCreate,'id' => 'distance-form'])?>
         <div class="row">
@@ -48,12 +45,25 @@ $chatCreate = Url::toRoute(['/site/chat-distance-create']);
         </div>
         <div class="form-group">
             <?= Html::a('Back',['/site/address'],['class' => 'btn btn-success'])?>
-            <?php if (count($chatDistance)>=1){ ?>
-            <?= Html::a('Done',['/site/index'],['class' => 'btn btn-primary','data-pjax-custom' => '#id-setup-process'])?>
+            <?php if (count($user->chatDistance)>=1){ ?>
+                <?= Html::a('Done',['/site/index'],['class' => 'btn btn-primary','data-pjax-custom' => '#id-setup-process'])?>
             <?php }?>
         </div>
         <?php ActiveForm::end()?>
     </div>
+</div>
+<div class="card mt-4">
+    <h5 class="card-header">Saved by distance</h5>
+    <div class="card-body">
+        <div class="row">
+            <?php foreach ($chatDistance as $distance){?>
+            <div class="col-md-10 col-sm-9 col-xs-12">
+
+            </div>
+        <?php }?>
+        </div>
+    </div>
+</div>
 
 <?php
 $current_page_url = Url::toRoute(['site/chat-distance']);
