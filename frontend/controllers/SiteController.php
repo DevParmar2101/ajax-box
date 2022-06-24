@@ -37,11 +37,11 @@ class SiteController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index','about','contact','login','signup'],
+                        'actions' => ['index','about','contact','login','signup','chat-distance-create'],
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'address', 'detail', 'view-detail', 'chat-distance', 'captcha'],
+                        'actions' => ['logout','address','detail','view-detail','chat-distance','captcha','chat-distance-create'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -196,6 +196,20 @@ class SiteController extends Controller
             return $this->renderAjax($this->profileView, $content);
         }
         return $this->render($this->profileView, $content);
+    }
+
+    public function actionChatDistanceCreate()
+    {
+        $request = Yii::$app->request;
+        $model = new UserChatDistance();
+
+        if ($request->isAjax){
+            if ($model->load(Yii::$app->request->post())){
+                $model->user_id = Yii::$app->user->identity->id;
+                $model->save();
+                return $this->actionChatDistance(true);
+            }
+        }
     }
     /**
      * Logs in a user.
