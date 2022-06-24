@@ -39,7 +39,7 @@ use yii\helpers\Url;
             </div>
             <div class="col-md-2 col-sm-3 col-xs-12 align-self-center">
                 <div class="text-center d-flex square-button mt-3">
-                    <button type="submit" class="add-distance-price btn-sm btn btn-primary"><i class="fa-solid fa-plus"></i></button>
+                    <button type="submit" class="add-distance-price btn-sm btn btn-outline-secondary"><i class="fa fa-plus"></i></button>
                 </div>
             </div>
         </div>
@@ -58,8 +58,36 @@ use yii\helpers\Url;
         <div class="row">
             <?php foreach ($chatDistance as $distance){?>
             <div class="col-md-10 col-sm-9 col-xs-12">
-
+                <div class="row">
+                    <div class="col-lg-3">
+                        <?= $form->field($distance,'km_from')->textInput(['readonly' => true])?>
+                    </div>
+                    <div class="col-lg-3">
+                        <?= $form->field($distance,'km_to')->textInput(['readonly' => true])?>
+                    </div>
+                    <div class="col-lg-3">
+                        <?= $form->field($distance,'min_order_price')->textInput(['readonly' => true])?>
+                    </div>
+                    <div class="col-lg-3">
+                        <?= $form->field($distance,'delivery_price')->textInput(['readonly' => true])?>
+                    </div>
+                </div>
             </div>
+                <div class="col-md-2 col-sm-3 col-xs-12 align-self-center">
+                    <div class="text-center d-flex">
+                        <?= Html::a(' <i class="fa fa-trash"></i> ',['/site/chat-distance-delete','id' => $distance->id],[
+                                'role' => 'model-remote',
+                                'title' => 'Delete item',
+                                'data-pjax-custom' => '0',
+                                'class' => 'btn btn-outline-danger btn-sm',
+                                'data-confirm' => false,
+                                'data-method' => false,
+                                'data-request-method' => 'post',
+                                'data-confirm-title' => 'Are you sure?',
+                                'data-confirm-message' => 'Are you sure you want to delete this?',
+                        ]);?>
+                    </div>
+                </div>
         <?php }?>
         </div>
     </div>
