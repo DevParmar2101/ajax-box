@@ -15,7 +15,6 @@ use yii\web\View;
 $this->title = 'User Address';
 
 ?>
-
     <h3 class="card-header">Username: <?php echo $user->username?></h3>
     <div class="card-body">
         <?php $form = ActiveForm::begin(['action'=>['site/address'],'id' => 'address-form'])?>
@@ -30,7 +29,7 @@ $this->title = 'User Address';
         </div>
 
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col">
                 <?= $form->field($user_address,'post_code')->textInput()?>
             </div>
             <div class="col-lg-6">
