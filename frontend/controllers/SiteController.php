@@ -19,6 +19,7 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use yii\web\Response;
 
 /**
  * Site controller
@@ -41,7 +42,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout','address','detail','view-detail','chat-distance','captcha','chat-distance-create'],
+                        'actions' => ['logout','address','detail','view-detail','chat-distance','captcha','chat-distance-create','chat-distance-delete'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -198,6 +199,9 @@ class SiteController extends Controller
         return $this->render($this->profileView, $content);
     }
 
+    /**
+     * @return string|void
+     */
     public function actionChatDistanceCreate()
     {
         $request = Yii::$app->request;
@@ -208,6 +212,22 @@ class SiteController extends Controller
                 $model->user_id = Yii::$app->user->identity->id;
                 $model->save();
                 return $this->actionChatDistance(true);
+            }
+        }
+    }
+
+    public function actionChatDistanceDelete($id)
+    {
+        $request = Yii::$app->request;
+        if ($request->isAjax){
+            if (($model = UserChatDistance::findOne($id)) !== null) {
+                if ($model->delete()) {
+                    Yii::$app->response->format = Response::FORMAT_JSON;
+                    return [
+                        'forceClose'=> true,
+                        'forceReload'=>'#id-setup-process'
+                    ];
+                }
             }
         }
     }

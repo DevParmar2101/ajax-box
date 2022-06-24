@@ -86,6 +86,7 @@ use yii\helpers\Url;
                                 'data-confirm-title' => 'Are you sure?',
                                 'data-confirm-message' => 'Are you sure you want to delete this?',
                         ]);?>
+
                     </div>
                 </div>
         <?php }?>
