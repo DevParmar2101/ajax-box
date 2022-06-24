@@ -113,7 +113,6 @@ class SiteController extends Controller
             if ($user_detail->load(Yii::$app->request->post())) {
                 $user_detail->user_id = Yii::$app->user->identity->id;
                 if ($user_detail->save()){
-                    Yii::$app->session->setFlash('success','Data Save Successfully!');
                     return $this->actionAddress(true);
                 }
             }
@@ -147,7 +146,6 @@ class SiteController extends Controller
             if ($user_address->load(Yii::$app->request->post()) && Yii::$app->request->isPjax) {
                 $user_address->user_id = Yii::$app->user->identity->id;
                 $user_address->save();
-                Yii::$app->session->setFlash('success','Data Save SuccessFully!');
                 return $this->actionViewDetail(true);
             }
         }else{
