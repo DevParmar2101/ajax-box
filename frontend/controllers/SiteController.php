@@ -41,7 +41,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'address', 'detail', 'view-detail','captcha'],
+                        'actions' => ['logout', 'address', 'detail', 'view-detail', 'chat-distance', 'captcha'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -165,7 +165,7 @@ class SiteController extends Controller
         $distance = new UserChatDistance();
         $content = [
             'view_name' => 'chat-distance',
-            'user' =>null,
+//            'user' =>null,
             'distance' => $distance
         ];
         if ($renderAjax)
