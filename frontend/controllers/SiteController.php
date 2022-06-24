@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use common\models\User;
 use common\models\UserAddress;
+use common\models\UserChatDistance;
 use common\models\UserDetail;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
@@ -161,9 +162,17 @@ class SiteController extends Controller
     {
         Yii::$app->view->title = 'User Chat';
         $user_id = Yii::$app->user->identity->id;
+        $distance = new UserChatDistance();
         $content = [
-            'view_name' => ''
+            'view_name' => 'chat-distance',
+            'user' =>null,
+            'distance' => $distance
         ];
+        if ($renderAjax)
+        {
+            return $this->renderAjax($this->profileView, $content);
+        }
+     return $this->render($this->profileView, $content);
     }
     /**
      * @param bool $renderAjax
