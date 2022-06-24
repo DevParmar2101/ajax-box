@@ -2,6 +2,7 @@
 
 use common\models\User;
 use common\models\UserAddress;
+use common\models\UserChatDistance;
 use common\models\UserDetail;
 use yii\widgets\Pjax;
 use johnitvn\ajaxcrud\CrudAsset;
@@ -10,6 +11,7 @@ use johnitvn\ajaxcrud\CrudAsset;
  * @var $user_detail UserDetail
  * @var $user_address UserAddress
  * @var $user User
+ * @var $distance UserChatDistance
  * User
  */
 CrudAsset::register($this);
@@ -23,6 +25,7 @@ CrudAsset::register($this);
                     'user_detail' => $user_detail ?? null,
                     'user_address'=> $user_address ?? null,
                     'user'  => $user ?? null,
+                    'distance' => $distance ?? null,
                 ])?>
             </div>
         </div>
