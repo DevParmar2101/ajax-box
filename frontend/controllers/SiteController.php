@@ -216,6 +216,11 @@ class SiteController extends Controller
         }
     }
 
+    /**
+     * @param $id
+     * @return string
+     * @throws \yii\db\StaleObjectException
+     */
     public function actionChatDistanceDelete($id)
     {
         $request = Yii::$app->request;
@@ -223,10 +228,7 @@ class SiteController extends Controller
             if (($model = UserChatDistance::findOne($id)) !== null) {
                 if ($model->delete()) {
                     Yii::$app->response->format = Response::FORMAT_JSON;
-                    return [
-                        'forceClose'=> true,
-                        'forceReload'=>'#id-setup-process'
-                    ];
+                    return $this->actionChatDistance(true);
                 }
             }
         }
