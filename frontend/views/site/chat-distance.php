@@ -45,8 +45,8 @@ use yii\helpers\Url;
         </div>
         <div class="form-group">
             <?= Html::a('Back',['/site/address'],['class' => 'btn btn-success'])?>
-            <?php if (count($user->chatDistance)>=1){ ?>
-                <?= Html::a('Done',['/site/index'],['class' => 'btn btn-primary','data-pjax-custom' => '#id-setup-process'])?>
+            <?php if (count($chatDistance)>=1){ ?>
+                <?= Html::a('Done',['/site/view-detail'],['class' => 'btn btn-primary','data-pjax-custom' => '#id-setup-process'])?>
             <?php }?>
         </div>
         <?php ActiveForm::end()?>
