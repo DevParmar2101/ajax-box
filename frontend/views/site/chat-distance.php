@@ -14,8 +14,12 @@ use yii\helpers\Url;
     $chatDistance = UserChatDistance::find()->where(['user_id' => Yii::$app->user->identity->id])->orderBy(['id' => SORT_DESC])->all();
     $chatCreate = Url::toRoute(['/site/chat-distance-create']);
 ?>
-    <h5 class="card-header">By Distance</h5>
-    <div class="card-body">
+    <div class="card-header d-flex">
+        <h5 class="m-0 align-self-center">By Distance</h5>
+        <div class="text-right done-button">
+            <?= \yii\helpers\Html::a('Next',['site/view-detail'],['class'=>'btn btn-primary','data-pjax-custom' => '#id-setup-process'])?>
+        </div>
+    </div>    <div class="card-body">
         <?php $form = ActiveForm::begin(['action' => $chatCreate,'id' => 'distance-form'])?>
         <div class="row">
             <div class="col-md-10 col-sm-9 col-xs-12">
@@ -46,7 +50,7 @@ use yii\helpers\Url;
         <div class="form-group">
             <?= Html::a('Back',['/site/address'],['class' => 'btn btn-success'])?>
             <?php if (count($chatDistance)>=1){ ?>
-                <?= Html::a('Done',['/site/view-detail'],['class' => 'btn btn-primary','data-pjax-custom' => '#id-setup-process'])?>
+                <?= Html::submitButton('Done', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
             <?php }?>
         </div>
         <?php ActiveForm::end()?>
