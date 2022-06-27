@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use common\models\MultipleDistance;
+use common\models\Product;
 use common\models\User;
 use common\models\UserAddress;
 use common\models\UserChatDistance;
@@ -43,7 +44,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout','address','detail','view-detail','chat-distance','captcha','chat-distance-create','chat-distance-delete', 'multiple-distance'],
+                        'actions' => ['logout','address','detail','view-detail','chat-distance','captcha','chat-distance-create','chat-distance-delete', 'multiple-distance','add-multiple-distance'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -176,7 +177,11 @@ class SiteController extends Controller
         }
      return $this->render($this->profileView, $content);
     }
-
+    public function actionAddMultipleDistance($id,$value): string
+    {
+        $model = User::findOne(['id'=>$id]);
+        return $this->renderAjax('multiple-distance',['model'=>$model,'counter'=>$value]);
+    }
     /**
      * @param bool $renderAjax
      * @return string
