@@ -92,6 +92,8 @@ AppAsset::register($this);
 
     <?php $this->endBody() ?>
     <?php
+    $product_url = \yii\helpers\Url::toRoute(['site/add-multiple-distance']);
+    $user_id = Yii::$app->user->identity->id;
     $js_pjax = <<<JS
 $.pjax.defaults.scrollTo=false;
 $("body").bind("ajaxComplete", function(e, xhr, settings){
@@ -135,6 +137,23 @@ $("body").on("submit", "form", function() {
     return true;
 });
 
+    $(document).on('click',".btn-add-product",function(){  
+        var product = $user_id;
+        var div = $(this).data('div');
+        var counter = 'counter-'+ div;
+        var value_counter = $('.'+counter).val();
+        var new_value_counter = 0;
+        if(!value_counter){
+            value_counter = 1;
+        }
+        new_value_counter = parseInt(value_counter)+1;
+        $('.'+counter).val(new_value_counter);
+        $.get("$product_url?id="+product+"&value="+value_counter, function(data, status){
+            $("#"+div).append(data);  
+            $(".sub-product-title-"+product).removeClass('d-none');
+            $(".product-price-"+product).addClass('d-none');
+        });
+    });
 JS;
     $this->registerJs($js_pjax);
     ?>
