@@ -19,7 +19,8 @@ use yii\helpers\Url;
         <div class="text-right done-button">
             <?= \yii\helpers\Html::a('Next',['site/view-detail'],['class'=>'btn btn-primary','data-pjax-custom' => '#id-setup-process'])?>
         </div>
-    </div>    <div class="card-body">
+    </div>
+    <div class="card-body">
         <?php $form = ActiveForm::begin(['action' => $chatCreate,'id' => 'distance-form'])?>
         <div class="row">
             <div class="col-md-10 col-sm-9 col-xs-12">
