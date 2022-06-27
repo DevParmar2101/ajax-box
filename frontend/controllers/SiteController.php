@@ -43,7 +43,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout','address','detail','view-detail','chat-distance','captcha','chat-distance-create','chat-distance-delete'],
+                        'actions' => ['logout','address','detail','view-detail','chat-distance','captcha','chat-distance-create','chat-distance-delete', 'multiple-distance'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -183,16 +183,17 @@ class SiteController extends Controller
      */
     public function actionMultipleDistance(bool $renderAjax = false): string
     {
-        $distance = new MultipleDistance();
+        Yii::$app->view->title = 'Multiple Distance';
+        $multiple_distance = new MultipleDistance();
         $content = [
             'view_name' => 'multiple-distance',
-            'distance' => $distance
+            'multiple_distance' => $multiple_distance
         ];
         if ($renderAjax)
         {
             return $this->renderAjax($this->profileView, $content);
         }
-        return $this->renderAjax($this->profileView, $content);
+        return $this->render($this->profileView, $content);
     }
     /**
      * @param bool $renderAjax
