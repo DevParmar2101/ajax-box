@@ -1,5 +1,6 @@
 <?php
 
+use common\models\MultipleDistance;
 use common\models\User;
 use common\models\UserAddress;
 use common\models\UserChatDistance;
@@ -12,7 +13,8 @@ use johnitvn\ajaxcrud\CrudAsset;
  * @var $user_address UserAddress
  * @var $user User
  * @var $distance UserChatDistance
- * User
+ * @var $multiple_distance MultipleDistance
+ *
  */
 CrudAsset::register($this);
 ?>
@@ -26,6 +28,7 @@ CrudAsset::register($this);
                     'user_address'=> $user_address ?? null,
                     'user'  => $user ?? null,
                     'distance' => $distance ?? null,
+                    'multiple_distance' => $multiple_distance ?? null,
                 ])?>
             </div>
         </div>
