@@ -18,7 +18,8 @@
         "yiisoft/yii2": "~2.0.14",
         "yiisoft/yii2-bootstrap4": "~2.0.0",
         "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0",
-        "johnitvn/yii2-ajaxcrud": "^2.1"
+        "johnitvn/yii2-ajaxcrud": "^2.1",
+        "thamtech/yii2-uuid": "^1.2"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
