@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\models\MultipleDistance;
 use common\models\User;
 use common\models\UserAddress;
 use common\models\UserChatDistance;
@@ -175,6 +176,24 @@ class SiteController extends Controller
         }
      return $this->render($this->profileView, $content);
     }
+
+    /**
+     * @param bool $renderAjax
+     * @return string
+     */
+    public function actionMultipleDistance(bool $renderAjax = false): string
+    {
+        $distance = new MultipleDistance();
+        $content = [
+            'view_name' => 'multiple-distance',
+            'distance' => $distance
+        ];
+        if ($renderAjax)
+        {
+            return $this->renderAjax($this->profileView, $content);
+        }
+        return $this->renderAjax($this->profileView, $content);
+    }
     /**
      * @param bool $renderAjax
      * @return string
@@ -233,6 +252,7 @@ class SiteController extends Controller
             }
         }
     }
+
     /**
      * Logs in a user.
      *
