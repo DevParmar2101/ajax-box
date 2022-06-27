@@ -2,7 +2,9 @@
 
 namespace common\models;
 
+use thamtech\uuid\helpers\UuidHelper;
 use Yii;
+use yii\behaviors\AttributeBehavior;
 
 /**
  * This is the model class for table "multiple_distance".
@@ -12,6 +14,7 @@ use Yii;
  * @property float $price
  * @property string $uuid
  * @property string $created_at
+ * @property int $user_id
  */
 class MultipleDistance extends \yii\db\ActiveRecord
 {
@@ -48,6 +51,24 @@ class MultipleDistance extends \yii\db\ActiveRecord
             'price' => 'Price',
             'uuid' => 'Uuid',
             'created_at' => 'Created At',
+            'user_id' => 'User ID'
         ];
+    }
+    /**
+     * @return array
+     */
+    public function behaviors()
+    {
+        $behaviours = parent::behaviors();
+        $behaviours['uuidBehavior'] = [
+            'class' => AttributeBehavior::class,
+            'attributes' => [
+                self::EVENT_BEFORE_INSERT => 'uuid',
+            ],
+            'value' => static function () {
+                return UuidHelper::uuid();
+            },
+        ];
+        return $behaviours;
     }
 }
