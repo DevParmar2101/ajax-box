@@ -143,10 +143,13 @@ $("body").on("submit", "form", function() {
         var counter = 'counter-'+ div;
         var value_counter = $('.'+counter).val();
         var new_value_counter = 0;
+        console.log(div);
+        console.log(counter);
+        console.log(value_counter);
         if(!value_counter){
             value_counter = 1;
         }
-        new_value_counter = parseInt(value_counter)+1;
+         new_value_counter = parseInt(value_counter)+1;
         $('.'+counter).val(new_value_counter);
         $.get("$product_url?id="+product+"&value="+value_counter, function(data, status){
             $("#"+div).append(data);  
