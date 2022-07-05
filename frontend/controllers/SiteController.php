@@ -150,7 +150,7 @@ class SiteController extends Controller
             if ($user_address->load(Yii::$app->request->post()) && Yii::$app->request->isPjax) {
                 $user_address->user_id = Yii::$app->user->identity->id;
                 $user_address->save();
-                return $this->actionChatDistance(true);
+                return $this->actionMultipleDistance(true);
             }
         }else{
             return $this->render($this->profileView, $content);
@@ -180,7 +180,7 @@ class SiteController extends Controller
     public function actionAddMultipleDistance($id,$value): string
     {
         $model = User::findOne(['id'=>$id]);
-        return $this->renderAjax('multiple-distance',['model'=>$model,'counter'=>$value]);
+        return $this->renderAjax('partial/add-multiple-distance',['model'=>$model,'counter'=>$value]);
     }
     /**
      * @param bool $renderAjax
