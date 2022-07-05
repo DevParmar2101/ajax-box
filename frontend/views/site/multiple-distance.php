@@ -4,6 +4,7 @@ use common\components\ActiveForm;
 use common\models\MultipleDistance;
 use common\models\User;
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 /**
  * @var $form ActiveForm
@@ -19,7 +20,7 @@ use yii\helpers\Html;
     </div>
 </div>
 <div class="card-body">
-    <?php $form = ActiveForm::begin(['action' => '','id' => 'multiple-form'])?>
+    <?php $form = ActiveForm::begin(['id' => 'multiple-form'])?>
     <div class="row">
         <div class="col-md-11 col-sm-9 col-xs-12">
             <div class="row">
@@ -32,8 +33,9 @@ use yii\helpers\Html;
                 </div>
             </div>
         </div>
+
         <div class="col-md-1 col-sm-3 col-xs-12 align-self-center">
-            <div class="text-center col=sm-3 col-xs-12 align-self-center mt-3">
+            <div class="text-center col-sm-3 col-xs-12 align-self-center mt-3">
                 <?= Html::a(
                         '<i class="fa fa-plus"></i>',
                         'javascript:void(0);',
@@ -50,3 +52,10 @@ use yii\helpers\Html;
     </div>
     <?php ActiveForm::end()?>
 </div>
+<?php
+$current_page_url = Url::toRoute(['site/multiple-distance']);
+$js_page_reload = <<<JS
+window.history.pushState('', '', "$current_page_url");
+JS;
+$this->registerJs($js_page_reload);
+?>
