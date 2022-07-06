@@ -190,9 +190,11 @@ class SiteController extends Controller
     {
         Yii::$app->view->title = 'Multiple Distance';
         $multiple_distance = new MultipleDistance();
+        $user_address = UserAddress::findOne(['user_id' => Yii::$app->user->identity->id]);
         $content = [
             'view_name' => 'multiple-distance',
-            'multiple_distance' => $multiple_distance
+            'multiple_distance' => $multiple_distance,
+            'user_address' => $user_address
         ];
         if ($renderAjax)
         {
