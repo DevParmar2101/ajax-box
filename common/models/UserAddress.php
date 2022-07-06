@@ -2,7 +2,9 @@
 
 namespace common\models;
 
+use thamtech\uuid\helpers\UuidHelper;
 use Yii;
+use yii\behaviors\AttributeBehavior;
 use yii\db\ActiveRecord;
 
 /**
@@ -16,6 +18,7 @@ use yii\db\ActiveRecord;
  * @property string $landmark
  * @property int $status
  * @property int $user_id
+ * @property string $uuid
  */
 class UserAddress extends   ActiveRecord
 {
@@ -61,6 +64,23 @@ class UserAddress extends   ActiveRecord
             'landmark' => 'Landmark',
             'status' => 'Status',
         ];
+    }
+    /**
+     * @return array
+     */
+    public function behaviors()
+    {
+        $behaviours = parent::behaviors();
+        $behaviours['uuidBehavior'] = [
+            'class' => AttributeBehavior::class,
+            'attributes' => [
+                self::EVENT_BEFORE_INSERT => 'uuid',
+            ],
+            'value' => static function () {
+                return UuidHelper::uuid();
+            },
+        ];
+        return $behaviours;
     }
     /**
      * @return array|mixed
