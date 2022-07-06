@@ -8,10 +8,12 @@ use yii\helpers\Html;
     <div class="col-md-11 col-sm-9 col-xs-12">
         <div class="row">
             <div class="col-lg-6">
+                <?= Html::label('Name',"MultipleDistance[$counter]name")?>
                 <?= Html::textInput("MultipleDistance[$counter]name",null,['class' => 'form-control'])?>
             </div>
 
             <div class="col-lg-6">
+                <?= Html::label('Price',"MultipleDistance[$counter]price")?>
                 <?= Html::textInput("MultipleDistance[$counter]price",null,['class' => 'form-control'])?>
             </div>
         </div>
@@ -24,7 +26,7 @@ use yii\helpers\Html;
                 'javascript:void(0);',
                 [
                     'id' => 'add-sub-product',
-                    'class' => 'collapsed btn-outline-secondary btn btn-sm btn-add-product',
+                    'class' => 'collapsed btn-outline-danger btn btn-sm btn-add-product',
                     'data-pjax-custom' => '0',
                 ]
             )?>
