@@ -30,6 +30,7 @@ CrudAsset::register($this);
                     'distance' => $distance ?? null,
                     'multiple_distance' => $multiple_distance ?? null,
                 ])?>
+
             </div>
         </div>
     </div>
