@@ -20,16 +20,16 @@ use yii\widgets\Pjax;
 if (!isset($multiple_distance)) {
     $multiple_distance['db']= MultipleDistance::find()->where(['user_id' => Yii::$app->user->identity->id])->indexBy('uuid')->all();
 }
-//if (!isset($multiple_distance['unsaved'])) {
-//    $unsaved_count = count($multiple_distance['unsaved']);
-//}else{
-//    $unsaved_count = 0;
-//}
-//if (isset($multiple_distance['db'])) {
-//    $db_count = count($multiple_distance['db']);
-//}else{
-//    $db_count = 0;
-//}
+if (!isset($multiple_distance['unsaved'])) {
+    $unsaved_count = count(array($multiple_distance['name']));
+}else{
+    $unsaved_count = 0;
+}
+if (isset($multiple_distance['db'])) {
+    $db_count = count(array($multiple_distance['db']));
+}else{
+    $db_count = 0;
+}
 ?>
 <?php
 if (!isset($all_models_validation)) {
@@ -54,18 +54,17 @@ JS;
 <?php Pjax::begin(['id' => 'test', 'enablePushState' => false,'scrollTo' => false]); ?>
 <?php $form = ActiveForm::begin([
     'id' => 'multiple-form',
-
 ])?>
     <div class="card-body">
         <div class="row">
             <div class="col-md-11 col-sm-9 col-xs-12">
                 <div class="row">
                     <div class="col-lg-6">
-                        <?= $form->field($multiple_distance,'name')->textInput()?>
+                        <?= $form->field($multiple_distance,'name[1]')->textInput()?>
                     </div>
 
                     <div class="col-lg-6">
-                        <?= $form->field($multiple_distance,'price')->textInput()?>
+                        <?= $form->field($multiple_distance,'price[1]')->textInput()?>
                     </div>
                 </div>
             </div>
@@ -86,7 +85,7 @@ JS;
             </div>
         </div>
         <div class="" id="<?= 'sub-product-'.$user_address->uuid?>">
-
+            <input class="<?='counter-sub-product-'.$user_address->uuid?>" name="counter" hidden value="<?=$unsaved_count?($unsaved_count+1):1?>">
         </div>
     </div>
     <div class="card-footer">
