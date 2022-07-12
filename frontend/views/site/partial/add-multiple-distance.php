@@ -10,7 +10,7 @@ use yii\helpers\Html;
             <div class="col-lg-6">
                 <div class="form-group field-multipledistance-name required has-error">
                     <?= Html::label('Name',"multipledistance-name",['class' => 'control-label'])?>
-                    <?= Html::textInput("MultipleDistance[name]",null,['id' =>'multipledistance-name','class' => 'form-control','aria-required' => "true"])?>
+                    <?= Html::textInput("MultipleDistance[name][$counter]",null,['id' =>'multipledistance-name','class' => 'form-control','aria-required' => "true"])?>
                     <p class="help-block help-block-error"></p>
                 </div>
             </div>
@@ -18,7 +18,7 @@ use yii\helpers\Html;
             <div class="col-lg-6">
                 <div class="form-group field-multipledistance-price required has-error">
                     <?= Html::label('Price',"multipledistance-price",['class' => 'control-label'])?>
-                    <?= Html::textInput("MultipleDistance[price]",null,['id' => 'multipledistance-price','class' => 'form-control','aria-required' => 'true'])?>
+                    <?= Html::textInput("MultipleDistance[price][$counter]",null,['id' => 'multipledistance-price','class' => 'form-control','aria-required' => 'true'])?>
                     <p class="help-block help-block-error"></p>
                 </div>
             </div>
