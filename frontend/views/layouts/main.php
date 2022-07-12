@@ -1,6 +1,6 @@
 <?php
 
-/** @var \yii\web\View $this */
+/** @var View $this */
 /** @var string $content */
 
 use common\widgets\Alert;
@@ -10,6 +10,7 @@ use yii\bootstrap4\Html;
 use yii\bootstrap4\Nav;
 use yii\bootstrap4\NavBar;
 use yii\helpers\Url;
+use yii\web\View;
 
 AppAsset::register($this);
 ?>
@@ -94,7 +95,6 @@ AppAsset::register($this);
     <?php $this->endBody() ?>
     <?php
     $product_url = Url::toRoute(['site/add-multiple-distance']);
-    $user_id = Yii::$app->user->isGuest?'':Yii::$app->user->identity->id;
     $js_pjax = <<<JS
 $.pjax.defaults.scrollTo=false;
 $("body").bind("ajaxComplete", function(e, xhr, settings){
@@ -156,7 +156,7 @@ $("body").on("submit", "form", function() {
         console.log(new_value_counter);
         $('.'+counter).val(new_value_counter);
         $.get("$product_url?id="+product+"&value="+value_counter, function(data, status){
-            $("#"+div).append(data);  
+            $("#"+div).append(data);
             $(".sub-product-title-"+product).removeClass('d-none');
             $(".product-price-"+product).addClass('d-none');
         });
