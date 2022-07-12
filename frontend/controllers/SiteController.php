@@ -3,7 +3,6 @@
 namespace frontend\controllers;
 
 use common\models\MultipleDistance;
-use common\models\Product;
 use common\models\User;
 use common\models\UserAddress;
 use common\models\UserChatDistance;
@@ -182,6 +181,7 @@ class SiteController extends Controller
         $model = User::findOne(['id'=>$id]);
         return $this->renderAjax('partial/add-multiple-distance',['model'=>$model,'counter'=>$value]);
     }
+
     /**
      * @param bool $renderAjax
      * @return string
@@ -202,13 +202,14 @@ class SiteController extends Controller
         }
         return $this->render($this->profileView, $content);
     }
+
     /**
      * @param bool $renderAjax
      * @return string
      */
     public function actionViewDetail(bool $renderAjax = false): string
     {
-        Yii::$app->view->title = 'View Detail ';
+        Yii::$app->view->title = 'View Detail';
         $user_id = Yii::$app->user->identity->id;
         $user = User::findOne(['id' => $user_id]);
         $user_detail = UserDetail::findOne(['user_id' => $user_id]);
@@ -248,7 +249,7 @@ class SiteController extends Controller
      * @return string
      * @throws \yii\db\StaleObjectException
      */
-    public function actionChatDistanceDelete($id)
+    public function actionChatDistanceDelete($id): string
     {
         $request = Yii::$app->request;
         if ($request->isAjax){
@@ -377,7 +378,7 @@ class SiteController extends Controller
      * @return mixed
      * @throws BadRequestHttpException
      */
-    public function actionResetPassword($token)
+    public function actionResetPassword(string $token)
     {
         try {
             $model = new ResetPasswordForm($token);
@@ -400,10 +401,10 @@ class SiteController extends Controller
      * Verify email address
      *
      * @param string $token
-     * @throws BadRequestHttpException
      * @return yii\web\Response
+     *@throws BadRequestHttpException
      */
-    public function actionVerifyEmail($token)
+    public function actionVerifyEmail(string $token): Response
     {
         try {
             $model = new VerifyEmailForm($token);

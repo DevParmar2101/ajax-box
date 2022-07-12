@@ -9,6 +9,7 @@ use yii\bootstrap4\Breadcrumbs;
 use yii\bootstrap4\Html;
 use yii\bootstrap4\Nav;
 use yii\bootstrap4\NavBar;
+use yii\helpers\Url;
 
 AppAsset::register($this);
 ?>
@@ -92,8 +93,8 @@ AppAsset::register($this);
 
     <?php $this->endBody() ?>
     <?php
-    $product_url = \yii\helpers\Url::toRoute(['site/add-multiple-distance']);
-    $user_id = Yii::$app->user->identity->id;
+    $product_url = Url::toRoute(['site/add-multiple-distance']);
+    $user_id = Yii::$app->user->isGuest?'':Yii::$app->user->identity->id;
     $js_pjax = <<<JS
 $.pjax.defaults.scrollTo=false;
 $("body").bind("ajaxComplete", function(e, xhr, settings){

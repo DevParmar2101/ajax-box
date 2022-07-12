@@ -46,14 +46,17 @@ use yii\helpers\Url;
                 <div class="text-center d-flex square-button mt-3">
                     <button type="submit" class="add-distance-price btn-sm btn btn-outline-secondary"><i class="fa fa-plus"></i></button>
                 </div>
+
             </div>
         </div>
+
         <div class="form-group">
             <?= Html::a('Back',['/site/address'],['class' => 'btn btn-success'])?>
             <?php if (count($chatDistance)>=1){ ?>
                 <?= Html::submitButton('Done', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
             <?php }?>
         </div>
+
         <?php ActiveForm::end()?>
     </div>
 </div>

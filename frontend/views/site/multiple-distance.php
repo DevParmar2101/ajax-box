@@ -25,11 +25,11 @@ if (!isset($multiple_distance)) {
 //}else{
 //    $unsaved_count = 0;
 //}
-if (isset($multiple_distance['db'])) {
-    $db_count = count($multiple_distance['db']);
-}else{
-    $db_count = 0;
-}
+//if (isset($multiple_distance['db'])) {
+//    $db_count = count($multiple_distance['db']);
+//}else{
+//    $db_count = 0;
+//}
 ?>
 <?php
 if (!isset($all_models_validation)) {
@@ -51,7 +51,7 @@ JS;
             <?= Html::a('Next',['site/detail'],['class'=> 'btn  btn-primary','data-pjax-custom' => '#id-setup-process'])?>
         </div>
     </div>
-<?php Pjax::begin(['id' => $pjaxId, 'enablePushState' => false,'scrollTo' => false]); ?>
+<?php Pjax::begin(['id' => 'test', 'enablePushState' => false,'scrollTo' => false]); ?>
 <?php $form = ActiveForm::begin([
     'id' => 'multiple-form',
 

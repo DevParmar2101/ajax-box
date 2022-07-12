@@ -18,7 +18,6 @@ use yii\helpers\Html;
             </div>
         </div>
     </div>
-
     <div class="col-md-1 col-sm-3 col-xs-12 align-self-center">
         <div class="text-center col-sm-3 col-xs-12 align-self-center mt-3">
             <?= Html::a(
