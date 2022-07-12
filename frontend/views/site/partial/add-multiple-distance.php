@@ -8,13 +8,13 @@ use yii\helpers\Html;
     <div class="col-md-11 col-sm-9 col-xs-12">
         <div class="row">
             <div class="col-lg-6">
-                <?= Html::label('Name',"MultipleDistance[$counter]name")?>
-                <?= Html::textInput("MultipleDistance[$counter]name",null,['class' => 'form-control'])?>
+                <?= Html::label('Name',"multipledistance-name",['class' => 'control-label'])?>
+                <?= Html::textInput("MultipleDistance[name]",null,['id' =>'multipledistance-name','class' => 'form-control'])?>
             </div>
 
             <div class="col-lg-6">
-                <?= Html::label('Price',"MultipleDistance[$counter]price")?>
-                <?= Html::textInput("MultipleDistance[$counter]price",null,['class' => 'form-control'])?>
+                <?= Html::label('Price',"multipledistance-price",['class' => 'control-label'])?>
+                <?= Html::textInput("MultipleDistance[price]",null,['id' => 'multipledistance-price','class' => 'form-control'])?>
             </div>
         </div>
     </div>
