@@ -10,6 +10,7 @@ use common\models\UserDetail;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
 use Yii;
+use yii\base\Exception;
 use yii\base\InvalidArgumentException;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
@@ -163,11 +164,9 @@ class SiteController extends Controller
     public function actionChatDistance(bool $renderAjax = false): string
     {
         Yii::$app->view->title = 'User Chat';
-        $user_id = Yii::$app->user->identity->id;
         $distance = new UserChatDistance();
         $content = [
             'view_name' => 'chat-distance',
-//            'user' =>null,
             'distance' => $distance
         ];
         if ($renderAjax)
@@ -176,6 +175,12 @@ class SiteController extends Controller
         }
      return $this->render($this->profileView, $content);
     }
+
+    /**
+     * @param $id
+     * @param $value
+     * @return string
+     */
     public function actionAddMultipleDistance($id,$value): string
     {
         $model = User::findOne(['id'=>$id]);
@@ -185,12 +190,23 @@ class SiteController extends Controller
     /**
      * @param bool $renderAjax
      * @return string
+     * @throws Exception
      */
     public function actionMultipleDistance(bool $renderAjax = false): string
     {
         Yii::$app->view->title = 'Multiple Distance';
         $multiple_distance = new MultipleDistance();
         $user_address = UserAddress::findOne(['user_id' => Yii::$app->user->identity->id]);
+
+        if ($multiple_distance->load(Yii::$app->request->post())){
+            foreach ($multiple_distance as $item) {
+                /***@var $item MultipleDistance*/
+                $item->uuid = Yii::$app->security->generateRandomString(36);
+                $item->user_id = Yii::$app->user->identity->id;
+                $item->save();
+            }
+            return $this->actionViewDetail(true);
+        }
         $content = [
             'view_name' => 'multiple-distance',
             'multiple_distance' => $multiple_distance,
