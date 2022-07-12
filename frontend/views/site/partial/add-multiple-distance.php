@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 
 /* @var $counter*/
+
 ?>
 <div class="row">
     <div class="col-md-11 col-sm-9 col-xs-12">
