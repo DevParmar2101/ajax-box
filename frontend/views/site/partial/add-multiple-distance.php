@@ -8,13 +8,19 @@ use yii\helpers\Html;
     <div class="col-md-11 col-sm-9 col-xs-12">
         <div class="row">
             <div class="col-lg-6">
-                <?= Html::label('Name',"multipledistance-name",['class' => 'control-label'])?>
-                <?= Html::textInput("MultipleDistance[name]",null,['id' =>'multipledistance-name','class' => 'form-control'])?>
+                <div class="form-group field-multipledistance-name required has-error">
+                    <?= Html::label('Name',"multipledistance-name",['class' => 'control-label'])?>
+                    <?= Html::textInput("MultipleDistance[name]",null,['id' =>'multipledistance-name','class' => 'form-control','aria-required' => "true"])?>
+                    <p class="help-block help-block-error"></p>
+                </div>
             </div>
 
             <div class="col-lg-6">
-                <?= Html::label('Price',"multipledistance-price",['class' => 'control-label'])?>
-                <?= Html::textInput("MultipleDistance[price]",null,['id' => 'multipledistance-price','class' => 'form-control'])?>
+                <div class="form-group field-multipledistance-price required has-error">
+                    <?= Html::label('Price',"multipledistance-price",['class' => 'control-label'])?>
+                    <?= Html::textInput("MultipleDistance[price]",null,['id' => 'multipledistance-price','class' => 'form-control','aria-required' => 'true'])?>
+                    <p class="help-block help-block-error"></p>
+                </div>
             </div>
         </div>
     </div>
