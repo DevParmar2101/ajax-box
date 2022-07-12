@@ -94,3 +94,4 @@ class UserAddress extends   ActiveRecord
         return $array;
     }
 }
+
