@@ -139,18 +139,21 @@ $("body").on("submit", "form", function() {
 });
 
     $(document).on('click',".btn-add-product",function(){  
-        var product = $user_id;
+        var product = $(this).data('product');
         var div = $(this).data('div');
         var counter = 'counter-'+ div;
         var value_counter = $('.'+counter).val();
         var new_value_counter = 0;
-        console.log(div);
-        console.log(counter);
-        console.log(value_counter);
+
         if(!value_counter){
             value_counter = 1;
         }
          new_value_counter = parseInt(value_counter)+1;
+        console.log(product);
+        console.log(div);
+        console.log(counter);
+        console.log(value_counter);
+        console.log(new_value_counter);
         $('.'+counter).val(new_value_counter);
         $.get("$product_url?id="+product+"&value="+value_counter, function(data, status){
             $("#"+div).append(data);  
@@ -161,7 +164,6 @@ $("body").on("submit", "form", function() {
 JS;
     $this->registerJs($js_pjax);
     ?>
-
     </body>
     </html>
 <?php $this->endPage(); ?>
