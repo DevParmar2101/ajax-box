@@ -13,7 +13,7 @@ class m220624_080955_create_user_chat_distance extends Migration
     public function safeUp()
     {
         $query = <<<EOF
-CREATE TABLE `chat_box`.`user_chat_distance` ( 
+CREATE TABLE `user_chat_distance` ( 
     `id` INT(11) NOT NULL AUTO_INCREMENT ,
     `km_from` DECIMAL(15,2) NOT NULL , 
     `km_to` DECIMAL(15,2) NOT NULL ,
