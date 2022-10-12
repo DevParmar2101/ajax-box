@@ -1,6 +1,6 @@
 <?php
 
-/** @var \yii\web\View $this */
+/** @var View $this */
 /** @var string $content */
 
 use common\widgets\Alert;
@@ -9,6 +9,8 @@ use yii\bootstrap4\Breadcrumbs;
 use yii\bootstrap4\Html;
 use yii\bootstrap4\Nav;
 use yii\bootstrap4\NavBar;
+use yii\helpers\Url;
+use yii\web\View;
 
 AppAsset::register($this);
 ?>
@@ -92,8 +94,7 @@ AppAsset::register($this);
 
     <?php $this->endBody() ?>
     <?php
-    $product_url = \yii\helpers\Url::toRoute(['site/add-multiple-distance']);
-    $user_id = Yii::$app->user->identity->id;
+    $product_url = Url::toRoute(['site/add-multiple-distance']);
     $js_pjax = <<<JS
 $.pjax.defaults.scrollTo=false;
 $("body").bind("ajaxComplete", function(e, xhr, settings){
@@ -138,21 +139,24 @@ $("body").on("submit", "form", function() {
 });
 
     $(document).on('click',".btn-add-product",function(){  
-        var product = $user_id;
+        var product = $(this).data('product');
         var div = $(this).data('div');
         var counter = 'counter-'+ div;
         var value_counter = $('.'+counter).val();
         var new_value_counter = 0;
-        console.log(div);
-        console.log(counter);
-        console.log(value_counter);
+
         if(!value_counter){
             value_counter = 1;
         }
          new_value_counter = parseInt(value_counter)+1;
+        console.log(product);
+        console.log(div);
+        console.log(counter);
+        console.log(value_counter);
+        console.log(new_value_counter);
         $('.'+counter).val(new_value_counter);
         $.get("$product_url?id="+product+"&value="+value_counter, function(data, status){
-            $("#"+div).append(data);  
+            $("#"+div).append(data);
             $(".sub-product-title-"+product).removeClass('d-none');
             $(".product-price-"+product).addClass('d-none');
         });
@@ -160,7 +164,6 @@ $("body").on("submit", "form", function() {
 JS;
     $this->registerJs($js_pjax);
     ?>
-
     </body>
     </html>
 <?php $this->endPage(); ?>

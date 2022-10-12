@@ -13,7 +13,7 @@ class m220627_051310_creat_multiple_distance_table extends Migration
     public function safeUp()
     {
         $query =<<<EOF
-CREATE TABLE `chat_box`.`multiple_distance` (
+CREATE TABLE `multiple_distance` (
     `id` INT(11) NOT NULL AUTO_INCREMENT ,
      `name` VARCHAR(125) NOT NULL ,
       `price` DECIMAL(15,2) NOT NULL ,
