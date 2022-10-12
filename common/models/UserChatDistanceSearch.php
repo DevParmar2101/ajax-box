@@ -4,7 +4,6 @@ namespace common\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\UserChatDistance;
 
 /**
  * UserChatDistanceSearch represents the model behind the search form of `common\models\UserChatDistance`.
@@ -14,7 +13,7 @@ class UserChatDistanceSearch extends UserChatDistance
     /**
      * {@inheritdoc}
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             [['id', 'user_id'], 'integer'],
@@ -25,7 +24,7 @@ class UserChatDistanceSearch extends UserChatDistance
     /**
      * {@inheritdoc}
      */
-    public function scenarios()
+    public function scenarios(): array
     {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
@@ -38,7 +37,7 @@ class UserChatDistanceSearch extends UserChatDistance
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search(array $params): ActiveDataProvider
     {
         $query = UserChatDistance::find();
 
